@@ -11,7 +11,8 @@ namespace Estoque_Pessoal.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Cliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,10 +22,17 @@ namespace Estoque_Pessoal.Models
         }
     
         public int Id { get; set; }
+        [Required]
         public string Nome { get; set; }
         public string CEP { get; set; }
+        [Phone]
         public string Telefone { get; set; }
+        [Required]
         public string Login { get; set; }
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
         public string Senha { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

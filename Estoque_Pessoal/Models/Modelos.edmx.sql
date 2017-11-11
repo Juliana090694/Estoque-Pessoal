@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/11/2017 16:22:17
+-- Date Created: 11/11/2017 16:35:52
 -- Generated from EDMX file: C:\Users\jujub\onedrive\documentos\visual studio 2015\Projects\Estoque_Pessoal\Estoque_Pessoal\Models\Modelos.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [EstoqueBanco];
+USE [EstoquePessoal];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
