@@ -17,13 +17,13 @@ namespace Estoque_Pessoal.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Item()
         {
-            this.Estoque = new HashSet<Estoque>();
+            this.EstoqueItem = new HashSet<EstoqueItem>();
         }
     
         public int Id { get; set; }
         public string Nome { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Estoque> Estoque { get; set; }
+        public virtual ICollection<EstoqueItem> EstoqueItem { get; set; }
     }
 }

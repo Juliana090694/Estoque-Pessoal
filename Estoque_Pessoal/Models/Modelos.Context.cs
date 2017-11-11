@@ -13,10 +13,10 @@ namespace Estoque_Pessoal.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Model1Container : DbContext
+    public partial class ModelosContainer : DbContext
     {
-        public Model1Container()
-            : base("name=Model1Container")
+        public ModelosContainer()
+            : base("name=ModelosContainer")
         {
         }
     
@@ -27,6 +27,7 @@ namespace Estoque_Pessoal.Models
     
         public virtual DbSet<Cliente> ClienteSet { get; set; }
         public virtual DbSet<Estoque> EstoqueSet { get; set; }
+        public virtual DbSet<EstoqueItem> EstoqueItemSet { get; set; }
         public virtual DbSet<Item> ItemSet { get; set; }
     }
 }
