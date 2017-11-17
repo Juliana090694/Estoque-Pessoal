@@ -204,6 +204,7 @@
     <Compile Include="Models\Item.cs">
       <DependentUpon>Modelos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Modelos.Context.cs">
       <AutoGen>True</AutoGen>
