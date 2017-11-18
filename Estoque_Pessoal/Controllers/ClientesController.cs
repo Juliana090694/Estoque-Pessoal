@@ -12,11 +12,12 @@ using Microsoft.AspNet.Identity;
 
 namespace Estoque_Pessoal.Controllers
 {
+    [Authorize]
     public class ClientesController : Controller
     {
         private ModelosContainer db = new ModelosContainer();
 
-        // GET: Clientes
+        // GET: Clientes        
         public ActionResult Index()
         {
             return View(db.ClienteSet.ToList());
@@ -127,26 +128,27 @@ namespace Estoque_Pessoal.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult Login (LoginViewModel login)
+        public ActionResult Login ([Bind(Include = "Login,Senha")] Cliente cliente)
         {
             //Cria o objeto que vai guardar o possível cliente
             Cliente c = null;
             //Se foi enviado corretamente
-            if (login != null)
+            if (cliente != null)
             {
                 //Se login e senha forem diferente de nulos
-                if (login.Login != "" && login.Senha != "")
+                if (cliente.Login != "" && cliente.Senha != "")
                 {
                     //Procura no banco um login e senha igual e retorna o usuario
-                     c = db.ClienteSet.Where(l => l.Login == login.Login && l.Senha == login.Senha).FirstOrDefault();
+                    c = db.ClienteSet.Where(l => l.Login == cliente.Login && l.Senha == cliente.Senha).FirstOrDefault();
 
                     //Se o cliente for encontrado
                     if (c != null)
                     {
                         //Cria cookie de autenticação
-                        FormsAuthentication.SetAuthCookie(login.Login, false);
+                        FormsAuthentication.SetAuthCookie(cliente.Login, false);
                         //Guarda nome do usuário na session
                         Session["Nome"] = c.Nome;
+                        Session["Login"] = c.Login;
                         return RedirectToAction("Index", "Clientes");
                     }
                 }
