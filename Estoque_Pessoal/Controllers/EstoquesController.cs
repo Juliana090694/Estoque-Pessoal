@@ -10,6 +10,7 @@ using Estoque_Pessoal.Models;
 
 namespace Estoque_Pessoal.Controllers
 {
+    [Authorize]
     public class EstoquesController : Controller
     {
         private ModelosContainer db = new ModelosContainer();
@@ -17,7 +18,7 @@ namespace Estoque_Pessoal.Controllers
         // GET: Estoques
         public ActionResult Index()
         {
-            return View(db.EstoqueSet.ToList());
+            return View(db.EstoqueSet.Where(x => x.Cliente.Nome == User.Identity.Name).ToList());
         }
 
         // GET: Estoques/Details/5
