@@ -304,17 +304,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Clientes\Create.cshtml" />
     <Content Include="Views\Clientes\Delete.cshtml" />
-    <Content Include="Views\Clientes\Details.cshtml" />
     <Content Include="Views\Clientes\Edit.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Itens\Create.cshtml" />
     <Content Include="Views\Itens\Delete.cshtml" />
-    <Content Include="Views\Itens\Details.cshtml" />
     <Content Include="Views\Itens\Edit.cshtml" />
     <Content Include="Views\Itens\Index.cshtml" />
-    <Content Include="Views\EstoqueItens\Create.cshtml" />
     <Content Include="Views\EstoqueItens\Delete.cshtml" />
-    <Content Include="Views\EstoqueItens\Details.cshtml" />
     <Content Include="Views\EstoqueItens\Edit.cshtml" />
     <Content Include="Views\EstoqueItens\Index.cshtml" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />

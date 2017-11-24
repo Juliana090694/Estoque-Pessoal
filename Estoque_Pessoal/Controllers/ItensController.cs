@@ -35,6 +35,23 @@ namespace Estoque_Pessoal.Controllers
             return View(item);
         }
 
+        public ActionResult AdicionarItemEstoque(int? id)
+        {
+
+            //if (ModelState.IsValid)
+            //{
+            //    Item item = db.ItemSet.Find(id);
+            //    EstoqueItem itemE = new EstoqueItem();
+            //    itemE.Item = item;
+            //    //itemE.Estoque = idEstoque na sessao
+            //    itemE.Quantidade = 1;
+            //    db.EstoqueItemSet.Add(itemE);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            return RedirectToAction("Index");
+        }
+
         // GET: Itens/Create
         public ActionResult Create()
         {
