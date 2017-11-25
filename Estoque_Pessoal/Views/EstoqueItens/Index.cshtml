@@ -4,12 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Meu estoque</h2>
+<h2>Meu itens</h2>
 
 <p>
  
 </p>
-<table class="table">
+<table class="table table-striped table-hover table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Item.Nome)
@@ -20,19 +20,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <th>
-            @Html.DisplayFor(modelItem => item.Item.Nome)
-        </th>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantidade)
-        </td>
-        <td>
-            @Html.ActionLink("Alterar quantidade", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Deletar", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@foreach (var item in Model)
+{
+    //if (item.)
+    //{
+
+        <tr>
+            <th>
+                @Html.DisplayFor(modelItem => item.Item.Nome)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.ActionLink("Alterar quantidade", "Edit", new { id = item.Id },new { @class= "btn btn-secondary" }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.Id }, new { @class = "btn btn-secondary" })
+            </td>
+        </tr>
+    //}
 }
 
 </table>

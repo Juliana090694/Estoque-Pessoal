@@ -9,6 +9,27 @@
 
 </head>
 <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <!--Nome do link, action,controller, html-->
+                    <li>@Html.ActionLink("Clientes", "Index", "Clientes", null, new { @class = "navbar-brand" })</li>
+                    <li>@Html.ActionLink("Meus Itens", "Index", "Itens", null, new { @class = "navbar-brand" })</li>
+                    <li>@Html.ActionLink("Itens cadastrados", "Index", "Estoques", null, new { @class = "navbar-brand" })</li>
+                   
+                </ul>
+                <ul class="navbar-nav mr-auto">
+
+                    <li>@Html.ActionLink("Sair", "Logoff", "Clientes", null, new { @class = "navbar-brand"})</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -22,8 +43,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
-                    <li>@Html.ActionLink("Itens", "Index", "Itens")</li>
-                    <li>@Html.ActionLink("Estoque", "Index", "Estoques")</li>
+                    <li>@Html.ActionLink("Meus Itens", "Index", "Itens")</li>
+                    <li>@Html.ActionLink("Itens cadastrados", "Index", "Estoques")</li>
                     <li>                        </li>
                     <li>@Html.ActionLink("Sair", "Logoff", "Clientes")</li>
                 </ul>
@@ -35,7 +56,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Sei lá o que escrever</p>
+            <p style="text-align:center;">&copy; @DateTime.Now.Year - Meu Estoque</p>
         </footer>
     </div>
 

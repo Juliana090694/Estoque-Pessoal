@@ -4,19 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Cadastro novo", "Create")
-</p>
 <p>Nossos clientes atuais</p>
-<table class="table">
+<table class="table table-striped table-hover table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Login)
         </th>
        
         <th></th>
@@ -27,10 +19,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Login)
-        </td>
-       
+              
         <td>
             @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
