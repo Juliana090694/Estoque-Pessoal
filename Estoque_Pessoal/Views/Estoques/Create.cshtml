@@ -1,0 +1,57 @@
+﻿@model Estoque_Pessoal.Models.Estoque
+
+@{
+    ViewBag.Title = "Adicionar Item ao Estoque";
+    var lista = ViewBag.lista as SelectList;
+}
+
+<h2>Adicionar um item ao Estoque</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Estoque</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cliente, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.CEP, new { htmlAttributes = new { @class = "form-control" } })*@
+                @*@Html.DropDownList("id", null, htmlAttributes: new { @class = "form-control", @style = "width:300px;", @id = "dropdown", @name = "dropdown" })*@
+                @Html.DropDownListFor(m => m.EstoqueItem.Id,
+                lista.Select(option => new SelectListItem
+                {
+                    Text = option.Text,
+                    Value = option.Value
+                }), 
+                htmlAttributes: new {
+                    @class = "form-control",
+                    @style = "width:300px;",
+                    @id = "dropdown",
+                    @name = "dropdown" })
+
+                @Html.ValidationMessageFor(model => model.Cliente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EstoqueItem.Quantidade, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EstoqueItem.Quantidade, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EstoqueItem.Quantidade, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Adicionar item ao estoque" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar ao estoque", "Index")
+</div>

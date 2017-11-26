@@ -11,7 +11,7 @@ namespace Estoque_Pessoal.Controllers
     {
 
         private static readonly Singleton instance = new Singleton();
-        private readonly ConnectionStringSettings connectionString = ConfigurationManager.ConnectionStrings["ModelosContainer"];
+        private readonly ConnectionStringSettings connectionString = ConfigurationManager.ConnectionStrings["ModelosADO"];
         private readonly SqlConnection connection;
         //private readonly Entities entities;
 

@@ -84,7 +84,7 @@ namespace Estoque_Pessoal.Controllers
             {
                 db.Entry(estoqueItem).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Estoques");
             }
             return View(estoqueItem);
         }

@@ -38,6 +38,7 @@ namespace Estoque_Pessoal.Controllers
             return View(cliente);
         }
 
+        [AllowAnonymous]
         // GET: Clientes/Create
         public ActionResult Create()
         {
@@ -49,13 +50,22 @@ namespace Estoque_Pessoal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Create([Bind(Include = "Id,Nome,CEP,Telefone,Login,Senha")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
-                db.ClienteSet.Add(cliente);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                Cliente c = db.ClienteSet.Where(x => x.Login == cliente.Login).FirstOrDefault();
+                if (c == null)
+                {
+                    db.ClienteSet.Add(cliente);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["Error"] = "O login informado já existe!";
+                }
             }
 
             return View(cliente);
@@ -149,10 +159,11 @@ namespace Estoque_Pessoal.Controllers
                         //Guarda nome do usuário na session
                         Session["Nome"] = c.Nome;
                         Session["Login"] = c.Login;
-                        return RedirectToAction("Index", "Clientes");
+                        return RedirectToAction("Index", "Estoques");
                     }
                 }
                 //Em caso de algum erro
+                TempData["Error"] = "Usuário ou senha incorretos!";
                 ModelState.AddModelError("", "Usuário ou senha incorretos!");
                 return View();
             }
@@ -162,7 +173,16 @@ namespace Estoque_Pessoal.Controllers
         public ActionResult Logoff()
         {
             FormsAuthentication.SignOut();
+            Session["Nome"] = null;
+            Session["Login"] = null;
             return RedirectToAction("Login", "Clientes");
+        }
+
+        public Cliente RetornarLogado()
+        {
+            Cliente c = null;
+            c = db.ClienteSet.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
+            return c;
         }
 
         protected override void Dispose(bool disposing)

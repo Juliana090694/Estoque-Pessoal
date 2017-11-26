@@ -24,8 +24,8 @@
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Adicionar ao meu estoque", "AdicionarItemEstoque", new { id = item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) @*|
+            @Html.ActionLink("Adicionar ao meu estoque", "AdicionarItemEstoque", new { id = item.Id })*@
         </td>
     </tr>
 }

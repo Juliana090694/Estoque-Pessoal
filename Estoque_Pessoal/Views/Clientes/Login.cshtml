@@ -5,6 +5,18 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
+@* //Se o objeto enviado pelo controller for diferente de nulo e a string de erro for diferente de vazio, exibir mensagem na tela *@
+@if (TempData["Error"] != null)
+{
+    if ((string)TempData["Error"] != "")
+    {
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            @TempData["Error"].ToString()
+        </div>
+    }
+}
+
 <h2 class="text-muted" style="text-align:center;">Meu Estoque</h2>
 <h4 class="text-muted" style="text-align:center;"> Entre ou cadastre-se</h4>
 @using (Html.BeginForm()) 
@@ -28,7 +40,7 @@
             @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                @*@Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
@@ -37,7 +49,9 @@
                 <input type="submit" value="Login" class="btn btn-success" />
             </div>
           
-                <p style="text-align:center;margin-left:100px;"> @Html.ActionLink("Veja nossos clientes", "Index", "Clientes", null, new { @class = "navbar-brand" })</p>
+                @* Desnecessauro Rex: https://i.ytimg.com/vi/VAJZVV1qSqs/maxresdefault.jpg 
+                    Como um SaaS, um usuário não pode ter acesso a outros usuários *@
+                @*<p style="text-align:center;margin-left:100px;"> @Html.ActionLink("Veja nossos clientes", "Index", "Clientes", null, new { @class = "navbar-brand" })</p>*@
                 <p style="text-align:center;">@Html.ActionLink("Cadastre-se", "Create", "Clientes", null, new { @class = "navbar-brand" })</p>
             
         </div>

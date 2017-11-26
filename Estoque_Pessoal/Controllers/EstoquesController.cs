@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Estoque_Pessoal.Models;
+using Estoque_Pessoal.DAL;
 
 namespace Estoque_Pessoal.Controllers
 {
@@ -14,11 +15,13 @@ namespace Estoque_Pessoal.Controllers
     public class EstoquesController : Controller
     {
         private ModelosContainer db = new ModelosContainer();
+        private EstoqueItemDAO estoqueItemDAO = new EstoqueItemDAO();
+        private EstoqueDAO estoqueDAO = new EstoqueDAO();
 
         // GET: Estoques
         public ActionResult Index()
         {
-            return View(db.EstoqueSet.Where(x => x.Cliente.Nome == User.Identity.Name).ToList());
+            return View(db.EstoqueSet.Where(x => x.Cliente.Login == User.Identity.Name).ToList());
         }
 
         // GET: Estoques/Details/5
@@ -39,7 +42,15 @@ namespace Estoque_Pessoal.Controllers
         // GET: Estoques/Create
         public ActionResult Create()
         {
-            return View();
+            List<Item> lista = db.ItemSet.ToList();
+            if (lista != null)
+                ViewBag.lista = new SelectList(lista, "id", "nome", null);
+
+            Estoque viewModel = new Estoque();
+            viewModel.EstoqueItem = new EstoqueItem();
+            viewModel.EstoqueItem.Item = new Item();
+            viewModel.EstoqueItem.Quantidade = 1;
+            return View(viewModel);
         }
 
         // POST: Estoques/Create
@@ -47,16 +58,42 @@ namespace Estoque_Pessoal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id")] Estoque estoque)
+        public ActionResult Create( Estoque estoque)
         {
             if (ModelState.IsValid)
             {
-                db.EstoqueSet.Add(estoque);
-                db.SaveChanges();
+                estoque.Cliente = RetornarLogado();
+                if (estoque.Cliente != null)
+                {
+                    //Verifica se já existe um item de estoque com o mesmo produto para o mesmo usuário
+                    if (db.EstoqueSet.Where(x => x.Cliente.Id == estoque.Cliente.Id && x.EstoqueItem.Item.Id == estoque.EstoqueItem.Id).FirstOrDefault() == null)
+                    {
+                        estoque.EstoqueItem.Id = estoqueItemDAO.Add(estoque.EstoqueItem);
+                        estoqueDAO.Add(estoque);
+                    }
+                    else
+                    {
+                        TempData["Error"] = "O item já existe no estoque!";
+                        ModelState.AddModelError("", "O item já existe no estoque!");
+                    }
+                }
+                else
+                {
+                    TempData["Error"] = "Usuário inválido!";
+                    ModelState.AddModelError("", "Usuário inválido!");
+                }
+                
                 return RedirectToAction("Index");
             }
 
             return View(estoque);
+        }
+
+        public Cliente RetornarLogado()
+        {
+            Cliente c = null;
+            c = db.ClienteSet.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
+            return c;
         }
 
         // GET: Estoques/Edit/5
@@ -110,8 +147,20 @@ namespace Estoque_Pessoal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            
             Estoque estoque = db.EstoqueSet.Find(id);
+            EstoqueItem es = db.EstoqueItemSet.Find(estoque.EstoqueItem.Id);
             db.EstoqueSet.Remove(estoque);
+            db.EstoqueItemSet.Remove(es);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult EditarQuantidade(int itemEstoqueId, int quantidade)
+        {
+            EstoqueItem estoque = db.EstoqueItemSet.Where(x => x.Id == itemEstoqueId).FirstOrDefault();
+            estoque.Quantidade = quantidade;
+            db.Entry(estoque).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

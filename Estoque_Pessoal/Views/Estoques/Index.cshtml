@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Estoque_Pessoal.Models.Estoque>
+
+@{
+    ViewBag.Title = "Meu estoque";
+}
+
+@* //Se o objeto enviado pelo controller for diferente de nulo e a string de erro for diferente de vazio, exibir mensagem na tela *@
+@if (TempData["Error"] != null)
+{
+    if ((string)TempData["Error"] != "")
+    {
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            @TempData["Error"].ToString()
+        </div>
+    }
+}
+
+<h2>Meu estoque</h2>
+
+<p>
+    @Html.ActionLink("Adicionar item ao estoque", "Create")
+</p>
+<table class="table table-striped table-hover table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EstoqueItem.Item.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstoqueItem.Quantidade)
+        </th>
+        <th>
+            Ações   
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstoqueItem.Item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstoqueItem.Quantidade)
+        </td>
+        <td>
+            @Html.ActionLink("Editar Quantidade", "Edit", "EstoqueItens", new { id = item.EstoqueItem.Id },null) |
+            @Html.ActionLink("Excluir","Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+

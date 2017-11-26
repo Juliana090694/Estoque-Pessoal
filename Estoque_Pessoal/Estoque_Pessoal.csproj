@@ -185,17 +185,17 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\EstoqueItensController.cs" />
     <Compile Include="Controllers\EstoquesController.cs" />
     <Compile Include="Controllers\ItensController.cs" />
     <Compile Include="Controllers\Singleton.cs" />
+    <Compile Include="DAL\EstoqueDAO.cs" />
+    <Compile Include="DAL\EstoqueItemDAO.cs" />
     <Compile Include="DAL\ExemploDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cliente.cs">
       <DependentUpon>Modelos.tt</DependentUpon>
     </Compile>
@@ -205,12 +205,9 @@
     <Compile Include="Models\EstoqueItem.cs">
       <DependentUpon>Modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs">
       <DependentUpon>Modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoginViewModel.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Modelos.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -235,6 +232,10 @@
     <Content Include="App_Data\EstoquePessoal_log.ldf">
       <DependentUpon>EstoquePessoal.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -254,6 +255,8 @@
       <LastGenOutput>Modelos.cs</LastGenOutput>
       <DependentUpon>Modelos.edmx</DependentUpon>
     </Content>
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -271,6 +274,14 @@
     <Content Include="Models\Modelos.edmx.diagram">
       <DependentUpon>Modelos.edmx</DependentUpon>
     </Content>
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
@@ -310,13 +321,14 @@
     <Content Include="Views\Itens\Delete.cshtml" />
     <Content Include="Views\Itens\Edit.cshtml" />
     <Content Include="Views\Itens\Index.cshtml" />
-    <Content Include="Views\EstoqueItens\Delete.cshtml" />
     <Content Include="Views\EstoqueItens\Edit.cshtml" />
-    <Content Include="Views\EstoqueItens\Index.cshtml" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Clientes\Login.cshtml" />
+    <Content Include="Views\Estoques\Index.cshtml" />
+    <Content Include="Views\Estoques\Create.cshtml" />
+    <Content Include="Views\Estoques\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
