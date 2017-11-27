@@ -22,10 +22,10 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+    <hr />
     <div class="form-horizontal" style="align-content:center; margin-left:300px;">
         
-        <hr />
+     
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         
         <div class="form-group">
@@ -40,19 +40,15 @@
             @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Login" class="btn btn-success" />
+                <p style="margin-left:150px;">@Html.ActionLink("Cadastre-se", "Create", "Clientes", null, new { @class = "navbar-brand" })</p>
             </div>
-          
-                @* Desnecessauro Rex: https://i.ytimg.com/vi/VAJZVV1qSqs/maxresdefault.jpg 
-                    Como um SaaS, um usuário não pode ter acesso a outros usuários *@
-                @*<p style="text-align:center;margin-left:100px;"> @Html.ActionLink("Veja nossos clientes", "Index", "Clientes", null, new { @class = "navbar-brand" })</p>*@
-                <p style="text-align:center;">@Html.ActionLink("Cadastre-se", "Create", "Clientes", null, new { @class = "navbar-brand" })</p>
+               
             
         </div>
       

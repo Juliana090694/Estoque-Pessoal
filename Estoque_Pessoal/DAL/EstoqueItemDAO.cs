@@ -27,7 +27,6 @@ namespace Estoque_Pessoal.DAL
                 try
                 {
                     command.Parameters.Add("@Quantidade", SqlDbType.Int).Value = t.Quantidade;
-                    //Gambiarra pois não consigo passar o id do item no objeto item, então uso a variavel do EstoqueItem
                     command.Parameters.Add("@Item_Id", SqlDbType.Int).Value = t.Id;
                     
                     connection.Open();

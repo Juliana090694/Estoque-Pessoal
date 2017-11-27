@@ -10,19 +10,25 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top row">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid  col-xs-12 col-sm-8 col-lg-8">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Itens", "Index", "Itens", null, new { @class = "navbar-brand" })</li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Estoque", "Index", "Estoques", null, new { @class = "navbar-brand" })</li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right col-xs-12 col-sm-4 col-lg-4">
-                Bem vindo, @User.Identity.Name
-                <li>@Html.ActionLink("Sair", "Logoff", "Clientes", null, new { @class = "navbar-brand" })</li>
-            </ul>
-        </div>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                   @Html.ActionLink("Meu estoque", "Index", "Estoques", null, new { @class = "navbar-brand" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Itens cadastrados", "Index", "Itens", null, new { @class = "navbar-brand" })
+                    
+                </li>
+                <li>
+                    @Html.ActionLink("Sair", "Logoff", "Clientes", null, new { @class = "navbar-brand" })
+                </li>
+                <li style="padding-left:250px;">
+                    Bem vindo, @User.Identity.Name
+                </li>
+                   
+                </ul>
+</div>
     </nav>
     
     @*<div class="navbar navbar-inverse navbar-fixed-top">

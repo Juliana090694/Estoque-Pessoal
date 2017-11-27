@@ -192,7 +192,6 @@
     <Compile Include="Controllers\Singleton.cs" />
     <Compile Include="DAL\EstoqueDAO.cs" />
     <Compile Include="DAL\EstoqueItemDAO.cs" />
-    <Compile Include="DAL\ExemploDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -316,7 +315,6 @@
     <Content Include="Views\Clientes\Create.cshtml" />
     <Content Include="Views\Clientes\Delete.cshtml" />
     <Content Include="Views\Clientes\Edit.cshtml" />
-    <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Itens\Create.cshtml" />
     <Content Include="Views\Itens\Delete.cshtml" />
     <Content Include="Views\Itens\Edit.cshtml" />
