@@ -72,8 +72,11 @@ namespace Estoque_Pessoal.Controllers
         }
 
         // GET: Clientes/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit()
         {
+            Cliente c = RetornarLogado();
+            int? id = c.Id;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -96,8 +99,8 @@ namespace Estoque_Pessoal.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(cliente).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                db.SaveChanges();              
+                return RedirectToAction("Index", "Estoques");
             }
             return View(cliente);
         }
@@ -157,6 +160,7 @@ namespace Estoque_Pessoal.Controllers
                         //Cria cookie de autenticação
                         FormsAuthentication.SetAuthCookie(cliente.Login, false);
                         //Guarda nome do usuário na session
+                       
                         Session["Nome"] = c.Nome;
                         Session["Login"] = c.Login;
                         return RedirectToAction("Index", "Estoques");
