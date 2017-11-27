@@ -75,18 +75,11 @@ namespace Estoque_Pessoal.Controllers
         public ActionResult Edit()
         {
             Cliente c = RetornarLogado();
-            int? id = c.Id;
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Cliente cliente = db.ClienteSet.Find(id);
-            if (cliente == null)
+            if (c == null)
             {
                 return HttpNotFound();
             }
-            return View(cliente);
+            return View(c);
         }
 
         // POST: Clientes/Edit/5
@@ -99,7 +92,8 @@ namespace Estoque_Pessoal.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(cliente).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();              
+                db.SaveChanges();
+                TempData["Error"] = "Alteração realizada com sucesso!";
                 return RedirectToAction("Index", "Estoques");
             }
             return View(cliente);
